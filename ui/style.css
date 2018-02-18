@@ -25,7 +25,8 @@ kbd {
     border-radius: 4px;  
     padding: 3px 5px;  
     margin: 2px;  
-    color: #444444;  
+    color: #fff;  
     text-decoration: none; 
+    background-color: #fff;
 } 
 
