@@ -6,15 +6,15 @@ var app = express();
 app.use(morgan('combined'));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+  res.send(path.join(__dirname, 'ui', 'index.html'));
 });
 
 app.get('/article-one', function(req, res){
-   res.sendFile('Article 1st requested and response will be served here.'); 
+   res.send('Article 1st requested and response will be served here.'); 
 });
 
 app.get('/article-two', function(req, res){
-   res.sendFile('Article 2nd requested and response will be served here.'); 
+   res.send('Article 2nd requested and response will be served here.'); 
 });
 
 app.get('/article-three', function(req, res){
