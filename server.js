@@ -5,8 +5,9 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-
-var artOne = {
+var articles ={
+    
+    "article-one" : {
     title: "Article 1 | Bhavuk",
     heading: "Article One",
     date: "Aug 5, 2018",
@@ -38,7 +39,75 @@ var artOne = {
     `
     
     
-}
+},
+    "article-two" : {
+        title: "Article 2 | Bhavuk",
+        heading: "Article Two",
+        date: "Aug 10, 2018",
+        content:
+        `
+        <div>
+          <p>
+            This is how you copy: <kbd>⌘</kbd>+<kbd>C</kbd>
+          </p>
+          <p>
+            This is how you copy: <kbd>⌘</kbd>+<kbd>C</kbd>
+          </p>
+          <p>
+            This is how you copy: <kbd>⌘</kbd>+<kbd>C</kbd>
+          </p>
+        </div>
+
+        <div>
+          <p>
+            This is how you copy: <kbd>⌘</kbd>+<kbd>C</kbd>
+          </p>
+          <p>
+            This is how you copy: <kbd>⌘</kbd>+<kbd>C</kbd>
+          </p>
+          <p>
+            This is how you copy: <kbd>⌘</kbd>+<kbd>C</kbd>
+          </p>
+        </div>
+        <hr>
+        <p> <em>Every Programmer's Life.</em> </p>
+        
+        `
+    },
+    "article-three": {
+        title: "Article 3 | Bhavuk",
+        heading: "Article Three",
+        date: "Aug 15, 2018",
+        content:
+        `
+        <div>
+          <p>
+            This is how you paste: <kbd>⌘</kbd>+<kbd>V</kbd>
+          </p>
+          <p>
+            This is how you paste: <kbd>⌘</kbd>+<kbd>V</kbd>
+          </p>
+          <p>
+            This is how you paste: <kbd>⌘</kbd>+<kbd>V</kbd>
+          </p>
+        </div>
+
+        <div>
+          <p>
+            This is how you paste: <kbd>⌘</kbd>+<kbd>V</kbd>
+          </p>
+          <p>
+            This is how you paste: <kbd>⌘</kbd>+<kbd>V</kbd>
+          </p>
+          <p>
+            This is how you paste: <kbd>⌘</kbd>+<kbd>V</kbd>
+          </p>
+        </div>
+        <hr>
+        <p> <em>Every Programmer's Life.</em> </p>
+        `
+    }
+};
 
 function createTemplate(data){
     
@@ -76,23 +145,28 @@ function createTemplate(data){
     `;
     
     return htmlTemplate;
-
 }
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function(req, res){
-   res.send(createTemplate(artOne));
+app.get('/:articleName', function(req, res){
+    //articleName == article-one
+    var articleName = req.params.articleName;
+   res.send(createTemplate(articles[articleName]));
 });
 
+/*
 app.get('/article-two', function(req, res){
-   res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
+   res.send(createTemplate(artTwo));
 });
 
 app.get('/article-three', function(req, res){
-   res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
+   res.send(createTemplate(artThree));
 });
+
+*/
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
