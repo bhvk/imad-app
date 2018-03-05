@@ -147,21 +147,34 @@ function createTemplate(data){
     return htmlTemplate;
 }
 
+app.get('/:articleName', function(req, res){
+    //articleName == article-one
+    var articleName = req.params.articleName;
+   res.send(createTemplate(articles[articleName]));
+});
+
+// ----------------------------------
 var counter=0;
 
 app.get('/counter', function(req,res){
     counter+=1;
     res.send(counter.toString());
 });
+// ----------------------------------
+
+var names = [];
+app.get('/submit-name/:name', function(req, res){
+    //get name from request (input text area)
+    var name =req.params.name; 
+    
+    names.push(name);
+    //JSON : JavaScript Object Notation
+    req.send(JSON.stringyfy(names));
+});
+// ----------------------------------
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
-});
-
-app.get('/:articleName', function(req, res){
-    //articleName == article-one
-    var articleName = req.params.articleName;
-   res.send(createTemplate(articles[articleName]));
 });
 
 /*
@@ -182,6 +195,7 @@ app.get('/ui/main.js', function (req, res) {res.sendFile(path.join(__dirname, 'u
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
+
 
 
 // Do not change port, otherwise your app won't run on IMAD servers
