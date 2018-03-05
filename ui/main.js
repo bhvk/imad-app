@@ -46,3 +46,21 @@ button.onclick = function(){
     request.open('GET', 'http://bhavuk11sharma.imad.hasura-app.io/counter', true);
     request.send(null);
 };
+
+
+//submit name
+    //capture the name
+var nameInput = document.getElementById('name');
+var name = nameInput.value;
+var submit = getElementById('submit_btn');
+submit.onclick = function (){
+    //make the request to server and send the name
+    
+    //capture list of names and render it as list
+    var names = ['name1', 'name2', 'name3','name4'];
+    for(var i=0; i<names.length; i++){
+        list += '<li>' + names[i] +'</li>';
+    }
+    var ul = document.getElementById('namelist');
+    ul.innerHTML = list;
+}
