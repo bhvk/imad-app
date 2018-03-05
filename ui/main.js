@@ -19,3 +19,30 @@ function moveRight(){
 img.onclick = function(){
     var interval = setInterval(moveRight, 50);   
 };
+
+
+//counter code
+
+var button = document.getElementById("counter");
+button.onclick = function(){
+    
+    //create a request object to counter endpoint
+    var request = new XMLHttpRequest();
+    
+    //capture the response and store it in a variable
+    request.onreadystatechange = function() {
+        
+        if(request.readystate === XMLHttprequest.DONE) {   
+            //take an action
+            if(request.status === 200) {
+                var counter = request.responseText;
+                var span = document.getElementById("count");
+                span.innerHTML = counter.toString();   
+            }
+        }
+        //not done yet
+    };
+    //make the request
+    request.open('GET', "http://bhavuk11sharma.imad.hasura-app.io/counter", true);
+    request.send(null);
+};
