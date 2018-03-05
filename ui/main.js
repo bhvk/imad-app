@@ -50,8 +50,7 @@ button.onclick = function(){
 
 //submit name
 //capture the name
-var nameInput = document.getElementById('name');
-var name = nameInput.value;
+
 var submit = document.getElementById('submit_btn');
 submit.onclick = function (){
     //make the request to server and send the name
@@ -77,6 +76,8 @@ submit.onclick = function (){
         //HTMLHttpRequest not .DONE yet
     };
     //make the request
+    var nameInput = document.getElementById('name');
+    var name = nameInput.value;
     request.open('GET', 'http://bhavuk11sharma.imad.hasura-app.io/submit-name?name='+name, true);
     request.send(null);
     
