@@ -24,6 +24,7 @@ img.onclick = function(){
 //counter code
 
 var button = document.getElementById("counter");
+
 button.onclick = function(){
     
     //create a request object to counter endpoint
@@ -32,7 +33,7 @@ button.onclick = function(){
     //capture the response and store it in a variable
     request.onreadystatechange = function() {
         
-        if(request.readystate === XMLHttprequest.DONE) {   
+        if(request.readyState === XMLHttpRequest.DONE) {   
             //take an action
             if(request.status === 200) {
                 var counter = request.responseText;
